@@ -46,6 +46,7 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         int height = pipeHeight;
         Image img;
         boolean passed = false;
+        boolean isVisible = true;
 
         Pipe(Image img) {
             this.img = img;
@@ -117,6 +118,45 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
             pipes.add(betweenPipe);
         }
 
+        // hidden pipe
+        boolean antwoord1 = true;
+        boolean antwoord2 = true;
+        boolean antwoord3 = true;
+        if (antwoord1 == true) {
+            Pipe betweenPipe = new Pipe(betweenPipeImg);
+            betweenPipe.y = 28;
+            betweenPipe.height = middlePipeHeight;
+            betweenPipe.width = pipeWidth; // Adjust width if needed
+            betweenPipe.isVisible = false;
+            pipes.add(betweenPipe);
+        }
+        if (antwoord2 == true) {
+            Pipe betweenPipe = new Pipe(betweenPipeImg);
+            betweenPipe.y = 150 + 128;
+            betweenPipe.height = middlePipeHeight;
+            betweenPipe.width = pipeWidth; // Adjust width if needed
+            betweenPipe.isVisible = false;
+            pipes.add(betweenPipe);
+        }
+        if (antwoord3 == true) {
+            Pipe betweenPipe = new Pipe(betweenPipeImg);
+            betweenPipe.y = 380 + 128;
+            betweenPipe.height = middlePipeHeight;
+            betweenPipe.width = pipeWidth; // Adjust width if needed
+            betweenPipe.isVisible = false;
+            pipes.add(betweenPipe);
+        }
+
+
+        //for (int yPosition : middlePipeYPositions) {
+            //Pipe betweenPipe = new Pipe(betweenPipeImg);
+            //betweenPipe.y = yPosition + 128;
+            //betweenPipe.height = middlePipeHeight;
+            //betweenPipe.width = pipeWidth; // Adjust width if needed
+            //betweenPipe.isVisible = false;
+            //pipes.add(betweenPipe);
+        //}
+
         // Bottom pipe
         Pipe bottomPipe = new Pipe(bottomPipeImg);
         bottomPipe.y = 630;
@@ -139,7 +179,9 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         //pipes
         for (int i = 0; i < pipes.size(); i++) {
             Pipe pipe = pipes.get(i);
-            g.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height, null);
+            if (pipe.isVisible) {
+                g.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height, null);
+            }
         }
 
         //score
